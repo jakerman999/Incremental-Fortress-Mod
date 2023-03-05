@@ -72,17 +72,16 @@ var effectiveness = {
   
   
   //mana`)
-  .replace(`weaklings_button.html( 'Weaklings: ' + numT(tower1.weaklings) + '<br><span class="tiny">Power: +' + numT(( tower1.weaklings_power + (tower2.wizards * (tower2.wizards_power + tower2.warlocks * (tower2.warlocks_power + tower2.witches * tower2.witches_power) ) ) ) * winecellar.drunk[0]) + '/s<br>Price: ' + numT(tower1.weaklings_price[tower1.buy_amount_index]) + '</span>' );`,`weaklings_button.html( 'Weaklings: ' + numT(tower1.weaklings) + '<br><span class="tiny">Power: +' + numT(powers.weaklings) + '/s<br>Price: ' + numT(tower1.weaklings_price[tower1.buy_amount_index]) + '<br>Effectiveness:' + numT(effectiveness.weaklings/effMod) + '</span>' );`)
-  .replace(`dwarves_button.html( 'Dwarves: ' + numT(tower1.dwarves) + '<br><span class="tiny">Power: +' + numT ((tower1.dwarves_power + (tower2.wyverns*tower2.wyverns_power))* winecellar.drunk[1] * dragons_tower.dragons_multiplier ) + '/s<br>Price: ' + numT(tower1.dwarves_price[tower1.buy_amount_index]) + '</span>' );`,`dwarves_button.html( 'Dwarves: ' + numT(tower1.dwarves) + '<br><span class="tiny">Power: +' + numT(powers.dwarves) + '/s<br>Price: ' + numT(tower1.dwarves_price[tower1.buy_amount_index]) + '<br>Effectiveness:' + numT(effectiveness.dwarves/effMod) + '</span>' );`)
-  .replace(`humans_button.html( 'Humans: ' + numT(tower1.humans) + '<br><span class="tiny">Power: +' + numT((tower1.humans_power + tower3.catapults * (tower3.catapults_power + tower3.crossbows * tower3.crossbows_power))*winecellar.drunk[2]) + '/s<br>Price: ' + numT(tower1.humans_price[tower1.buy_amount_index]) + '</span>' );`,`humans_button.html( 'Humans: ' + numT(tower1.humans) + '<br><span class="tiny">Power: +' + numT(powers.humans) + '/s<br>Price: ' + numT(prices.humans) + '<br>Effectiveness:' + numT(effectiveness.humans/effMod) + '</span>' );`)
-  .replace(`ogres_button.html( 'Ogres: ' + numT(tower1.ogres) + '<br><span class="tiny">Power: +' + numT((tower1.ogres_power + tower3.cheiroballistras*tower3.cheiroballistras_power)*winecellar.drunk[3]) + '/s<br>Price: ' + numT(tower1.ogres_price[tower1.buy_amount_index]) + '</span>' );`,`ogres_button.html( 'Ogres: ' + numT(tower1.ogres) + '<br><span class="tiny">Power: +' + numT(powers.ogres) + '/s<br>Price: ' + numT(tower1.ogres_price[tower1.buy_amount_index]) + '<br>Effectiveness:' + numT(effectiveness.ogres/effMod) + '</span>' );`)
+  .replace(/(?<=weaklings_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.weaklings/effMod) + '</span>'`)
+  .replace(/(?<=dwarves_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.dwarves/effMod) + '</span>'`)
+  .replace(/(?<=humans_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.humans/effMod) + '</span>'`)
+  .replace(/(?<=ogres_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.ogres/effMod) + '</span>'`)
+  .replace(/(?<=wizards_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.wizards/effMod) + '</span>'`)
+  .replace(/(?<=warlocks_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.warlocks/effMod) + '</span>'`)
+  .replace(/(?<=witches_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.witches/effMod) + '</span>'`)
+  .replace(/(?<=wyverns_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.wyverns/effMod) + '</span>'`)
   );
   
   refreshUI = newRUI;
-     
-  
-  
-  
-  
-  
+
   
