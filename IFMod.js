@@ -57,16 +57,16 @@ var effectiveness = {
   
   powers.wizards = tower2.wizards_power + tower2.warlocks * (tower2.warlocks_power + tower2.witches * tower2.witches_power);
   prices.wizards = tower2.wizards_price[0];
-  effectiveness.wizards = powers.wizards / prices.wizards;
+  effectiveness.wizards = tower1.weaklings * powers.wizards / prices.wizards;
   powers.warlocks = tower2.warlocks_power + tower2.witches * tower2.witches_power;
   prices.warlocks = tower2.warlocks_price[0];
-  effectiveness.warlocks = powers.warlocks / prices.warlocks;
+  effectiveness.warlocks = tower2.wizards * powers.warlocks / prices.warlocks;
   powers.witches = tower2.witches_power;
   prices.witches = tower2.witches_price[0];
-  effectiveness.witches = powers.witches / prices.witches;
+  effectiveness.witches = tower2.warlocks * powers.witches / prices.witches;
   powers.wyverns = tower2.wyverns_power;
   prices.wyverns = tower2.wyverns_price[0];
-  effectiveness.wyverns = powers.wyverns / prices.wyverns;
+  effectiveness.wyverns = tower1.dwarves * powers.wyverns / prices.wyverns;
   
   effMod = Math.max(...Object.values(effectiveness));
   
