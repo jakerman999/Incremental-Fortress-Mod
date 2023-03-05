@@ -1,8 +1,13 @@
-var mortals = []; 
-mortals.push(document.querySelector("#weaklings_button")); 
-mortals.push(document.querySelector("#dwarves_button")); 
-mortals.push(document.querySelector("#humans_button")); 
-mortals.push(document.querySelector("#ogres_button")); 
+var buttons = {
+	weaklings:document.querySelector("#weaklings_button"), 
+	dwarves:document.querySelector("#dwarves_button"), 
+	humans:document.querySelector("#dwarves_button"), 
+	ogres:document.querySelector("#ogres_button") ,
+	wizards:document.querySelector("#wizards_button"),
+	warlocks:document.querySelector("#warlocks_button"),
+	witches:document.querySelector("#witches_button"),
+	wyverns:document.querySelector("#wyverns_button")
+}; 
  
 var powers = { 
 	weaklings:0, 
@@ -36,9 +41,11 @@ var effectiveness = {
 	wyverns:0
 };
 
-
+  // save a copy of stock UI
   var oldRUI = refreshUI
 
+  // insert our changes 
+  // slice magic numbers trim padding from toString()
   var newRUI = Function(oldRUI.toString().slice(25,-3).replace(`//mana`,`
 
   //effenciency
@@ -60,10 +67,10 @@ var effectiveness = {
   effectiveness.wizards = tower1.weaklings * powers.wizards / prices.wizards;
   powers.warlocks = tower2.warlocks_power + tower2.witches * tower2.witches_power;
   prices.warlocks = tower2.warlocks_price[0];
-  effectiveness.warlocks = tower2.wizards * powers.warlocks / prices.warlocks;
+  effectiveness.warlocks = tower1.weaklings * tower2.wizards * powers.warlocks / prices.warlocks;
   powers.witches = tower2.witches_power;
   prices.witches = tower2.witches_price[0];
-  effectiveness.witches = tower2.warlocks * powers.witches / prices.witches;
+  effectiveness.witches = tower1.weaklings * tower2.wizards * tower2.warlocks * powers.witches / prices.witches;
   powers.wyverns = tower2.wyverns_power;
   prices.wyverns = tower2.wyverns_price[0];
   effectiveness.wyverns = tower1.dwarves * powers.wyverns / prices.wyverns;
@@ -81,7 +88,22 @@ var effectiveness = {
   .replace(/(?<=witches_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.witches/effMod) + '</span>'`)
   .replace(/(?<=wyverns_button\.html\(.*) '<\/span>'/ ,`'<br>Effectiveness:' + numT(effectiveness.wyverns/effMod) + '</span>'`)
   );
+  // /regularExpression/
+  // (?<=___.*) require but ignore what is in this part of the pattern
+  // match the span tag, and add our effectiveness display
   
+  
+  // Replace the UI draw method with our updates
   refreshUI = newRUI;
+  
+
+
+// click a button to trigger a UI update, make it most effencient because why not
+buttons[Object.keys(effectiveness).find(k => effectiveness[k]/effMod == 1)].click()
+
+
+
+
+
 
   
