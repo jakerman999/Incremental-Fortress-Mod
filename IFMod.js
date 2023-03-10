@@ -99,7 +99,7 @@ var effectiveness = {
 
 
 // click a button to trigger a UI update, make it most effencient because why not
-buttons[Object.keys(effectiveness).find(k => effectiveness[k]/effMod == 1)].click()
+buttons[Object.keys(effectiveness).find(k => effectiveness[k]/Math.max(...Object.values(effectiveness)); == 1)].click()
 
 
 
